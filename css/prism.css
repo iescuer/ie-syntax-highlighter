@@ -1,18 +1,18 @@
-/* PrismJS 1.19.0
-https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+css-extras+dart+graphql+javadoclike+jsdoc+js-extras+js-templates+json+markdown+markup-templating+php+php-extras+jsx+sass+scss+sql+typescript&plugins=line-numbers+show-invisibles+autolinker+show-language+normalize-whitespace+toolbar+copy-to-clipboard */
+/* PrismJS 1.20.0
+https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+css-extras+graphql+js-extras+js-templates+json+markdown+markup-templating+php+php-extras+sql&plugins=autolinker+show-language+remove-initial-line-feed+autoloader+keep-markup+unescaped-markup+normalize-whitespace+data-uri-highlight+toolbar+copy-to-clipboard */
 /**
- * okaidia theme for JavaScript, CSS and HTML
- * Loosely based on Monokai textmate theme by http://www.monokai.nl/
- * @author ocodia
+ * prism.js Dark theme for JavaScript, CSS and HTML
+ * Based on the slides of the talk “/Reg(exp){2}lained/”
+ * @author Lea Verou
  */
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #f8f8f2;
+	color: white;
 	background: none;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	text-shadow: 0 -.1em .2em black;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 14px;
+	font-size: 1em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -30,23 +30,34 @@ pre[class*="language-"] {
 	hyphens: none;
 }
 
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+	background: hsl(30, 20%, 25%);
+}
+
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
-	border-radius: 0.3em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #272822;
+	border: .3em solid hsl(30, 20%, 40%);
+	border-radius: .5em;
+	box-shadow: 1px 1px .5em black inset;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .1em;
+	padding: .15em .2em .05em;
 	border-radius: .3em;
+	border: .13em solid hsl(30, 20%, 40%);
+	box-shadow: 1px 1px .3em -.1em black inset;
 	white-space: normal;
 }
 
@@ -54,11 +65,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: slategray;
+	color: hsl(30, 20%, 50%);
 }
 
 .token.punctuation {
-	color: #f8f8f2;
+	opacity: .7;
 }
 
 .token.namespace {
@@ -67,15 +78,11 @@ pre[class*="language-"] {
 
 .token.property,
 .token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	color: #f92672;
-}
-
 .token.boolean,
-.token.number {
-	color: #ae81ff;
+.token.number,
+.token.constant,
+.token.symbol {
+	color: hsl(350, 40%, 70%);
 }
 
 .token.selector,
@@ -84,7 +91,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #a6e22e;
+	color: hsl(75, 70%, 60%);
 }
 
 .token.operator,
@@ -93,23 +100,18 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-	color: #f8f8f2;
+	color: hsl(40, 90%, 60%);
 }
 
 .token.atrule,
 .token.attr-value,
-.token.function,
-.token.class-name {
-	color: #e6db74;
-}
-
 .token.keyword {
-	color: #66d9ef;
+	color: hsl(350, 40%, 70%);
 }
 
 .token.regex,
 .token.important {
-	color: #fd971f;
+	color: #e90;
 }
 
 .token.important,
@@ -124,81 +126,8 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
-pre[class*="language-"].line-numbers {
-	position: relative;
-	padding-left: 3.8em;
-	counter-reset: linenumber;
-}
-
-pre[class*="language-"].line-numbers > code {
-	position: relative;
-	white-space: inherit;
-}
-
-.line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
-}
-
-	.line-numbers-rows > span {
-		pointer-events: none;
-		display: block;
-		counter-increment: linenumber;
-	}
-
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #999;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
-
-.token.tab:not(:empty),
-.token.cr,
-.token.lf,
-.token.space {
-	position: relative;
-}
-
-.token.tab:not(:empty):before,
-.token.cr:before,
-.token.lf:before,
-.token.space:before {
-	color: #808080;
-	opacity: 0.6;
-	position: absolute;
-}
-
-.token.tab:not(:empty):before {
-	content: '\21E5';
-}
-
-.token.cr:before {
-	content: '\240D';
-}
-
-.token.crlf:before {
-	content: '\240D\240A';
-}
-.token.lf:before {
-	content: '\240A';
-}
-
-.token.space:before {
-	content: '\00B7';
+.token.deleted {
+	color: red;
 }
 
 .token a {
@@ -267,5 +196,16 @@ div.code-toolbar > .toolbar span:hover,
 div.code-toolbar > .toolbar span:focus {
 	color: inherit;
 	text-decoration: none;
+}
+
+/* Fallback, in case JS does not run, to ensure the code is at least visible */
+[class*='lang-'] script[type='text/plain'],
+[class*='language-'] script[type='text/plain'],
+script[type='text/plain'][class*='lang-'],
+script[type='text/plain'][class*='language-'] {
+	display: block;
+	font: 100% Consolas, Monaco, monospace;
+	white-space: pre;
+	overflow: auto;
 }
 
